@@ -3,11 +3,13 @@
 namespace App\Livewire;
 
 use App\Models\Bingo;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Filament\Forms\Components\Grid;
 use Filament\Forms\Components\TagsInput;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Contracts\HasForms;
+use Filament\Tables\Actions\Action;
 use Filament\Tables\Actions\CreateAction;
 use Filament\Tables\Actions\DeleteAction;
 use Filament\Tables\Actions\EditAction;
@@ -109,6 +111,17 @@ class ListBingos extends Component implements HasForms, HasTable
                             ]),
                     ]),
                 DeleteAction::make('delete'),
+                Action::make('download')
+                    ->label('Descargar')
+                    ->icon('heroicon-m-arrow-down')
+                    ->color('info')
+                    ->action(function (Bingo $record) {
+                        $pdf = Pdf::loadView('pdf.bingo', $record->toArray());
+
+                        return response()->streamDownload(function () use ($pdf) {
+                            echo $pdf->stream();
+                        }, 'bingo.pdf');
+                    }),
             ])
             ->bulkActions([
                 // ...
