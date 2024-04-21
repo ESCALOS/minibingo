@@ -17,7 +17,7 @@ return new class extends Migration
             $table->integer('rows');
             $table->integer('cols');
             $table->json('elements');
-
+            $table->integer('quantity');
             $table->timestamps();
         });
     }
