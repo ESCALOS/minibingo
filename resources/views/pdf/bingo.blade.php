@@ -17,7 +17,7 @@
         }
 
         .container {
-            margin-top: 4rem;
+            margin-top: 2rem;
         }
 
         table {
@@ -32,7 +32,7 @@
         }
 
         #header td {
-            font-size: 2rem;
+            font-size: 2.5rem;
             font-weight: bold;
             background-color: #ccc;
             padding: .5rem 0;
@@ -40,7 +40,8 @@
 
         #content td {
             padding: 2rem .0rem;
-            font-size: 1.5rem;
+            font-size: 2rem;
+            border: 1px solid black;
         }
     </style>
 </head>
@@ -99,10 +100,16 @@
         }
     @endphp
 
-    @for ($cartillas = 0; $cartillas < $quantity; $cartillas++)
+    @for ($cartillas = 1; $cartillas <= $quantity; $cartillas++)
         @php
-            // Obtener una combinación aleatoria de las combinaciones posibles
-            $combinacion = $combinaciones_cartillas[array_rand($combinaciones_cartillas)];
+            // Obtener un índice aleatorio dentro del rango del array de combinaciones
+            $indice_aleatorio = array_rand($combinaciones_cartillas);
+
+            // Obtener la combinación correspondiente al índice aleatorio
+            $combinacion = $combinaciones_cartillas[$indice_aleatorio];
+
+            // Eliminar la combinación seleccionada del array
+            array_splice($combinaciones_cartillas, $indice_aleatorio, 1);
         @endphp
         <div class="container">
             <table>
@@ -125,7 +132,7 @@
             </table>
         </div>
 
-        @if ($cartillas % 2 !== 0 && $cartillas !== $quantity - 1)
+        @if ($cartillas % 3 === 0 && $cartillas !== $quantity)
             <div class="page-break"></div>
         @endif
     @endfor

@@ -103,8 +103,8 @@ class ListBingos extends Component implements HasForms, HasTable
                             ->schema([
                                 TextInput::make('rows')
                                     ->label('Filas')
-                                    ->helperText('Vertical')
-                                    ->prefixIcon('heroicon-m-adjustments-vertical')
+                                    ->helperText('Horizontal')
+                                    ->prefixIcon('heroicon-m-adjustments-horizontal')
                                     ->numeric()
                                     ->integer()
                                     ->minValue(1)
@@ -114,8 +114,8 @@ class ListBingos extends Component implements HasForms, HasTable
                                     ->live(debounce: 250),
                                 TextInput::make('cols')
                                     ->label('Columnas')
-                                    ->helperText('Horizontal')
-                                    ->prefixIcon('heroicon-m-adjustments-horizontal')
+                                    ->helperText('Vertical')
+                                    ->prefixIcon('heroicon-m-adjustments-vertical')
                                     ->numeric()
                                     ->integer()
                                     ->minValue(1)
@@ -187,8 +187,8 @@ class ListBingos extends Component implements HasForms, HasTable
                             ->schema([
                                 TextInput::make('rows')
                                     ->label('Filas')
-                                    ->helperText('Vertical')
-                                    ->prefixIcon('heroicon-m-adjustments-vertical')
+                                    ->helperText('Horizontal')
+                                    ->prefixIcon('heroicon-m-adjustments-horizontal')
                                     ->numeric()
                                     ->integer()
                                     ->minValue(1)
@@ -198,8 +198,8 @@ class ListBingos extends Component implements HasForms, HasTable
                                     ->live(debounce: 250),
                                 TextInput::make('cols')
                                     ->label('Columnas')
-                                    ->helperText('Horizontal')
-                                    ->prefixIcon('heroicon-m-adjustments-horizontal')
+                                    ->helperText('Vertical')
+                                    ->prefixIcon('heroicon-m-adjustments-vertical')
                                     ->numeric()
                                     ->integer()
                                     ->minValue(1)
