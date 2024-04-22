@@ -223,7 +223,7 @@ class ListBingos extends Component implements HasForms, HasTable
 
                         return response()->streamDownload(function () use ($pdf) {
                             echo $pdf->stream();
-                        }, 'bingo.pdf');
+                        }, 'bingo - '.$record->title.'.pdf');
                     }),
             ])
             ->bulkActions([
