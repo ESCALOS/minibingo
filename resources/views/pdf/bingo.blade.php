@@ -17,7 +17,7 @@
         }
 
         .container {
-            margin-top: 2rem;
+            margin-top: 1.5rem;
         }
 
         table {
@@ -98,6 +98,21 @@
 
             return array_merge($combinations, combinations($array, $k));
         }
+
+        function getCardsByPage($rows): int
+        {
+            switch ($rows) {
+                case 1:
+                    return 5;
+                case 2:
+                    return 3;
+                case 3:
+                case 4:
+                    return 2;
+                default:
+                    return 1;
+            }
+        }
     @endphp
 
     @for ($cartillas = 1; $cartillas <= $quantity; $cartillas++)
@@ -122,17 +137,18 @@
                 </tr>
             </table>
             <table id="content" style="border-top: none;">
-                @for ($i = 0; $i < $cols; $i++)
+                @for ($i = 0; $i < $rows; $i++)
                     <tr>
-                        @for ($j = 0; $j < $rows; $j++)
-                            <td>{{ $combinacion[$i * $rows + $j] }}</td>
+                        @for ($j = 0; $j < $cols; $j++)
+                            <td>{{ $combinacion[$i * $cols + $j] }}</td>
                         @endfor
                     </tr>
                 @endfor
             </table>
         </div>
 
-        @if ($cartillas % 3 === 0 && $cartillas !== $quantity)
+        {{-- Salto de página si es necesario --}}
+        @if ($cartillas % getCardsByPage($rows) === 0 && $cartillas !== $quantity)
             <div class="page-break"></div>
         @endif
     @endfor

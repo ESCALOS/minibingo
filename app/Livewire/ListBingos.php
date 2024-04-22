@@ -42,7 +42,7 @@ class ListBingos extends Component implements HasForms, HasTable
                     ->badge()
                     ->separator(','),
                 TextColumn::make('cols')
-                    ->formatStateUsing(fn (Bingo $record) => $record->cols.'x'.$record->rows)
+                    ->formatStateUsing(fn (Bingo $record) => $record->rows.'x'.$record->cols)
                     ->tooltip('(Vertical)x(Horizontal)'),
             ])
             ->headerActions([
